@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product 
+    Id="{6381D6FD-AACE-40F3-A2DC-2C617FACB090}"
+    Name="MessageIDToolsSetup" 
+    Language="1033" 
+    Version="1.0.0.0" 
+    Manufacturer="banban525" 
+    UpgradeCode="7affa6de-98c0-473c-a5c5-652dd9c7d874">
+		<Package 
+      Id="*" 
+      InstallerVersion="200" 
+      Compressed="yes"
+      InstallScope="perUser" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+   
+    
+    <!-- msiにすべて含める -->
+    <Media Id='1' Cabinet='MessageIDTools.cab' EmbedCab='yes' DiskPrompt='CD-ROM [1]' />
+    <Property Id='DiskPrompt' Value="MessageIDTools Setup #1" />
+
+    <!-- インストール先変更機能を使うために必要 -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <!-- インストール先と機能を選べるUIを表示する -->
+    <UIRef Id="WixUI_Mondo" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+
+    <!-- Include the VSTO Custom action  -->
+    <Binary Id="VSTOCustomAction" SourceFile="..\VSTOCustomActions\bin\$(var.Configuration)\VSTOCustomActions.CA.dll"/>
+    <CustomAction Id="AddToInclusionList" BinaryKey="VSTOCustomAction" DllEntry="AddToInclusionList" Execute="immediate"/>
+    <CustomAction Id="RemoveFromInclusionList" BinaryKey="VSTOCustomAction" DllEntry="RemoveFromInclusionList" Execute="immediate"/>
+
+    <!-- Set the parameters read by the Custom action -->
+    <!-- 
+    	The public key that you used to sign your dll, looks something like <RSAKeyValue><Modulus>...</Modulus><Exponent>...</Exponent></RSAKeyValue>
+    	Take note: There should be no whitespace in the key!
+      -->
+    <Property Id="VSTOCustomAction_PublicKey"><![CDATA[<RSAKeyValue><Modulus>6FIt/+0r4p1+MXUPMhHdt2X7VIBQcBiCD+cg7F4AYN4jIyNzjDIyc4hiUfR/feI91qLH9L7d0RHXH8UPk+F2L4OofBO6KOtFBWiH7WD7ESF1FCnZq08o4Zex4ynqiIpF7vBiDDXkLFforDRUknmKXXkVRXfVIGOmY/Z9/ynXvHE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>]]></Property>
+    <CustomAction Id="PropertyAssign_ManifestLocation" Property="VSTOCustomAction_ManifestLocation" Value="[INSTALLFOLDER]OutlookAddIn1.vsto" />
+
+    <!-- Properties to check prerequisites -->
+    <Property Id="VSTORUNTIME">
+      <RegistrySearch Id="RegistrySearchVsto"
+                      Root="HKLM"
+                      Key="SOFTWARE\Microsoft\vsto runtime Setup\v9.0.30729"
+                      Name="SP"
+                      Type="raw"/>
+    </Property>
+    <Property Id="HASWORDPIA">
+      <ComponentSearch Id="ComponentSearchWordPIA"
+                       Guid="{816D4DFD-FF7B-4C16-8943-EEB07DF989CB}"/>
+    </Property>
+    <Property Id="HASSHAREDPIA">
+      <ComponentSearch Id="ComponentSearchSharedPIA"
+                       Guid="{FAB10E66-B22C-4274-8647-7CA1BA5EF30F}"/>
+    </Property>
+
+    <!--Modify the install sequence to call our custom action--> 
+    <InstallExecuteSequence>
+      <Custom Action="AddToInclusionList" After="InstallFinalize"><![CDATA[(&ProductFeature = 3) AND NOT (!ProductFeature = 3)]]></Custom>
+      <Custom Action="PropertyAssign_ManifestLocation" Before="AddToInclusionList"><![CDATA[(&ProductFeature = 3) AND NOT (!ProductFeature = 3)]]></Custom>
+      <Custom Action="RemoveFromInclusionList" After="InstallFinalize"><![CDATA[(&ProductFeature = 2) AND NOT (!ProductFeature = 2)]]></Custom>
+    </InstallExecuteSequence>
+
+    <Feature Id="ProductFeature" Title="MessageIDToolsSetup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="LocalAppDataFolder">
+				<Directory Id="INSTALLFOLDER" Name="MessageIDToolsSetup" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup 
+      Id="ProductComponents" 
+      Directory="INSTALLFOLDER">
+      <Component
+        Id="Component.Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
+        Guid="{44A6C98A-B893-4A5F-B028-4BD1FC5F0B48}">
+        <File
+          Id="File.Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
+          Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"
+          />
+        <File
+          Id="File.Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"
+          Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
+        <File
+          Id="File.OutlookAddIn1.dll"
+          Name="MessageIDToolsAddin.dll"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
+        <File
+          Id="File.OutlookAddIn1.dll.config"
+          Name="MessageIDToolsAddin.dll.config"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
+        <File
+          Id="File.OutlookAddIn1.dll.manifest"
+          Name="MessageIDToolsAddin.dll.manifest"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
+        <File
+          Id="File.OutlookAddIn1.vsto"
+          Name="MessageIDToolsAddin.vsto"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
+        <File
+          Id="File.Help"
+          Name="MessageIDToolsAddin.chm"
+          Source="..\Help\_build\htmlhelp\MessageIDToolsAddin.chm"/>
+
+        <RemoveFolder Id="RemoveThisFolder" On="uninstall" />
+
+        <RegistryValue
+          Root='HKCU'
+          Type='string'
+          Key='Software\banban525\MessageIDTools'
+          Name='InstallFolder'
+          Value='[INSTALLFOLDER]'
+          KeyPath='yes' />
+      </Component>
+
+      <Component
+        Id="Registry_FriendlyName"
+        Guid="{58CF06AE-3AFF-439B-9D1E-63C1A01F3889}">
+        <RegistryValue
+          Id="RegKey_FriendlyName" 
+          Root="HKCU"
+          Key="Software\Microsoft\Office\Outlook\AddIns\MessageIDTools-Addin"
+          Name="FriendlyName"
+          Value="Outlook MessageID Tools Add-In"
+          Type="string"
+          KeyPath="yes"/>
+      </Component>
+      <Component
+        Id="Registry_Description"
+        Guid="{73560928-19E5-49B9-AE02-77C21350D23F}">
+        <RegistryValue
+          Id="RegKey_Description"
+          Root="HKCU"
+          Key="Software\Microsoft\Office\Outlook\AddIns\MessageIDTools-Addin"
+          Name="Description"
+          Value="Outlook MessageID Tools Add-In"
+          Type="string"
+          KeyPath="yes" />
+      </Component>
+      <Component
+        Id="Registry_Manifest"
+        Guid="{45101E92-68BB-4E7B-805C-D7B9038A76A6}">
+        <RegistryValue
+          Id="RegKey_Manifest"
+          Root="HKCU"
+          Key="Software\Microsoft\Office\Outlook\AddIns\MessageIDTools-Addin"
+          Name="Manifest"
+          Value="[INSTALLFOLDER]OutlookAddIn1.vsto|vstolocal"
+          Type="string" 
+          KeyPath="yes" />
+      </Component>
+      <Component
+        Id="Registry_LoadBehavior"
+        Guid="{AEC87BED-AF9F-4912-94EF-82EB6CF70FD6}">
+        <RegistryValue
+          Id="RegKey_LoadBehavior" 
+          Root="HKCU"
+          Key="Software\Microsoft\Office\Outlook\AddIns\MessageIDTools-Addin"
+          Name="LoadBehavior"
+          Value="3"
+          Type="integer"
+          KeyPath="yes" />
+      </Component>
+
+    </ComponentGroup>
+	</Fragment>
+</Wix>
