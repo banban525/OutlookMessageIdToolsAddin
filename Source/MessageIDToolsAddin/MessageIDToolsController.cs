@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Outlook;
+using Microsoft.Win32;
 
 namespace MessageIDToolsAddin
 {
@@ -244,6 +245,19 @@ $SelectedText$
         public void ExecuteShowHelp()
         {
             var pluginDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            using (var subkey = Registry.CurrentUser.OpenSubKey(@"Software\banban525\MessageIDTools"))
+            {
+                if (subkey == null)
+                {
+                    return;
+                }
+                var registryValue = subkey.GetValue("InstallFolder", "").ToString();
+                if (string.IsNullOrEmpty(registryValue))
+                {
+                    pluginDir = registryValue;
+                }
+            }
+
             if (pluginDir == null)
             {
                 return;
