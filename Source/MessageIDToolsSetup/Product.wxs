@@ -39,7 +39,7 @@
     	Take note: There should be no whitespace in the key!
       -->
     <Property Id="VSTOCustomAction_PublicKey"><![CDATA[<RSAKeyValue><Modulus>6FIt/+0r4p1+MXUPMhHdt2X7VIBQcBiCD+cg7F4AYN4jIyNzjDIyc4hiUfR/feI91qLH9L7d0RHXH8UPk+F2L4OofBO6KOtFBWiH7WD7ESF1FCnZq08o4Zex4ynqiIpF7vBiDDXkLFforDRUknmKXXkVRXfVIGOmY/Z9/ynXvHE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>]]></Property>
-    <CustomAction Id="PropertyAssign_ManifestLocation" Property="VSTOCustomAction_ManifestLocation" Value="[INSTALLFOLDER]OutlookAddIn1.vsto" />
+    <CustomAction Id="PropertyAssign_ManifestLocation" Property="VSTOCustomAction_ManifestLocation" Value="[INSTALLFOLDER]MessageIDToolsAddin.vsto" />
 
     <!-- Properties to check prerequisites -->
     <Property Id="VSTORUNTIME">
@@ -95,19 +95,23 @@
           Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
         <File
-          Id="File.OutlookAddIn1.dll"
+          Id="File.MessageIDToolsAddin.dll"
           Name="MessageIDToolsAddin.dll"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
         <File
-          Id="File.OutlookAddIn1.dll.config"
+          Id="File.ja.MessageIDToolsAddin.resources.dll"
+          Name="MessageIDToolsAddin.resources.dll"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\ja\"/>
+        <File
+          Id="File.MessageIDToolsAddin.dll.config"
           Name="MessageIDToolsAddin.dll.config"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
         <File
-          Id="File.OutlookAddIn1.dll.manifest"
+          Id="File.MessageIDToolsAddin.dll.manifest"
           Name="MessageIDToolsAddin.dll.manifest"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
         <File
-          Id="File.OutlookAddIn1.vsto"
+          Id="File.MessageIDToolsAddin.vsto"
           Name="MessageIDToolsAddin.vsto"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
         <File
@@ -158,7 +162,7 @@
           Root="HKCU"
           Key="Software\Microsoft\Office\Outlook\AddIns\MessageIDTools-Addin"
           Name="Manifest"
-          Value="[INSTALLFOLDER]OutlookAddIn1.vsto|vstolocal"
+          Value="[INSTALLFOLDER]MessageIDToolsAddin.vsto|vstolocal"
           Type="string" 
           KeyPath="yes" />
       </Component>
