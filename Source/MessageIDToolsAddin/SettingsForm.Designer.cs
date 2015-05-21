@@ -32,12 +32,12 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this._templateEditor1 = new MessageIDToolsAddin.TemplateEditor();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this._templateEditor2 = new MessageIDToolsAddin.TemplateEditor();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this._templateEditor3 = new MessageIDToolsAddin.TemplateEditor();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,6 +91,17 @@
             this.tabPage1.Text = "Template 1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // _templateEditor1
+            // 
+            this._templateEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider1.SetHelpKeyword(this._templateEditor1, "");
+            this.helpProvider1.SetHelpString(this._templateEditor1, "");
+            this._templateEditor1.Location = new System.Drawing.Point(3, 3);
+            this._templateEditor1.Name = "_templateEditor1";
+            this.helpProvider1.SetShowHelp(this._templateEditor1, false);
+            this._templateEditor1.Size = new System.Drawing.Size(525, 260);
+            this._templateEditor1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this._templateEditor2);
@@ -101,6 +112,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Template 2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // _templateEditor2
+            // 
+            this._templateEditor2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._templateEditor2.Location = new System.Drawing.Point(3, 3);
+            this._templateEditor2.Name = "_templateEditor2";
+            this._templateEditor2.Size = new System.Drawing.Size(525, 260);
+            this._templateEditor2.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -113,30 +132,6 @@
             this.tabPage3.Text = "Template 3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // helpProvider1
-            // 
-            this.helpProvider1.HelpNamespace = "C:\\Users\\taka\\Documents\\Visual Studio 2013\\Projects\\OutlookAddIn1\\Help\\_build\\htm" +
-    "lhelp\\MessageIDToolsAddin.chm";
-            // 
-            // _templateEditor1
-            // 
-            this._templateEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpProvider1.SetHelpKeyword(this._templateEditor1, "");
-            this.helpProvider1.SetHelpString(this._templateEditor1, "");
-            this._templateEditor1.Location = new System.Drawing.Point(3, 3);
-            this._templateEditor1.Name = "_templateEditor1";
-            this.helpProvider1.SetShowHelp(this._templateEditor1, false);
-            this._templateEditor1.Size = new System.Drawing.Size(525, 260);
-            this._templateEditor1.TabIndex = 0;
-            // 
-            // _templateEditor2
-            // 
-            this._templateEditor2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._templateEditor2.Location = new System.Drawing.Point(3, 3);
-            this._templateEditor2.Name = "_templateEditor2";
-            this._templateEditor2.Size = new System.Drawing.Size(525, 260);
-            this._templateEditor2.TabIndex = 0;
-            // 
             // _templateEditor3
             // 
             this._templateEditor3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -144,6 +139,10 @@
             this._templateEditor3.Name = "_templateEditor3";
             this._templateEditor3.Size = new System.Drawing.Size(525, 260);
             this._templateEditor3.TabIndex = 0;
+            // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "";
             // 
             // SettingsForm
             // 

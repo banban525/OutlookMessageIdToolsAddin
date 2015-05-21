@@ -124,7 +124,8 @@ $SelectedText$
 
             if (mailItem != null)
             {
-                var messageIdObj = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E");
+                var messageIdObj =
+                    mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E");
                 if (messageIdObj != null)
                 {
                     messageID = messageIdObj.ToString();
@@ -161,7 +162,7 @@ $SelectedText$
             Clipboard.SetData(DataFormats.UnicodeText, contents);
 
         }
-    
+
 
         public void ExecuteMessageIDSearch(string messageId)
         {
@@ -174,13 +175,14 @@ $SelectedText$
             {
                 var mail = list[0];
                 var recieved = mail.ReceivedTime.ToShortDateString() + " " + mail.ReceivedTime.ToShortTimeString();
-                var folder = (Folder)mail.Parent;
+                var folder = (Folder) mail.Parent;
 
                 var enumerator2 = _application.Explorers.GetEnumerator();
                 enumerator2.MoveNext();
-                ((Explorer)enumerator2.Current).CurrentFolder = folder;
-                ((Explorer)enumerator2.Current).Search(
-                    Properties.Resources.SizeKeyword + ":" + mail.Size + " " + Properties.Resources.RecievedKeyword + ":" + recieved,
+                ((Explorer) enumerator2.Current).CurrentFolder = folder;
+                ((Explorer) enumerator2.Current).Search(
+                    Properties.Resources.SizeKeyword + ":" + mail.Size + " " + Properties.Resources.RecievedKeyword +
+                    ":" + recieved,
                     OlSearchScope.olSearchScopeCurrentFolder);
 
             }
@@ -194,12 +196,12 @@ $SelectedText$
 
             foreach (Folder folder in folders)
             {
-                MailItem foundMail = (MailItem)folder.Items.Find(query);
+                MailItem foundMail = (MailItem) folder.Items.Find(query);
                 if (foundMail != null)
                 {
                     list.Add(foundMail);
                 }
-                while ((foundMail = (MailItem)folder.Items.FindNext()) != null)
+                while ((foundMail = (MailItem) folder.Items.FindNext()) != null)
                 {
                     list.Add(foundMail);
                 }
@@ -209,7 +211,7 @@ $SelectedText$
         }
 
 
-        void OnClearMessageIDSearchEditBox()
+        private void OnClearMessageIDSearchEditBox()
         {
             if (ClearMessageIDSearchEditBox == null)
             {
@@ -218,6 +220,7 @@ $SelectedText$
             ClearMessageIDSearchEditBox(this, EventArgs.Empty);
 
         }
+
         public event EventHandler ClearMessageIDSearchEditBox;
 
         public void ExecuteShowSettings()
@@ -226,7 +229,7 @@ $SelectedText$
             {
                 Content = _templates
             };
-                
+
             var dialogResult = dlg.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -244,15 +247,21 @@ $SelectedText$
 
         public void ExecuteShowHelp()
         {
+
+            Help.ShowHelp(null, GetHelpFilePath(), HelpNavigator.Topic, "/ToolBar.html");
+        }
+
+        public static string GetHelpFilePath()
+        {
             var pluginDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             using (var subkey = Registry.CurrentUser.OpenSubKey(@"Software\banban525\MessageIDTools"))
             {
                 if (subkey == null)
                 {
-                    return;
+                    return string.Empty;
                 }
                 var registryValue = subkey.GetValue("InstallFolder", "").ToString();
-                if (string.IsNullOrEmpty(registryValue))
+                if (string.IsNullOrEmpty(registryValue) == false)
                 {
                     pluginDir = registryValue;
                 }
@@ -260,14 +269,14 @@ $SelectedText$
 
             if (pluginDir == null)
             {
-                return;
+                return string.Empty;
             }
             var helpFilePath1 = Path.Combine(pluginDir, Properties.Resources.HelpFileName);
             if (File.Exists(helpFilePath1) == false)
             {
-                return;
+                return string.Empty;
             }
-            Help.ShowHelp(null, helpFilePath1, HelpNavigator.Topic, "/ToolBar.html");
+            return helpFilePath1;
         }
     }
 }

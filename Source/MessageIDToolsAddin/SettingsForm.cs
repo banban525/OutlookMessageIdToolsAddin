@@ -20,6 +20,8 @@ namespace MessageIDToolsAddin
             _templateEditor1.TemplateData = Content[0];
             _templateEditor2.TemplateData = Content[1];
             _templateEditor3.TemplateData = Content[2];
+
+            helpProvider1.HelpNamespace = MessageIDToolsController.GetHelpFilePath();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
