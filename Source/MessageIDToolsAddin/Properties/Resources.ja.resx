@@ -123,6 +123,9 @@
   <data name="RecievedKeyword" xml:space="preserve">
     <value>受信日時</value>
   </data>
+  <data name="SenderKeyword" xml:space="preserve">
+    <value>差出人</value>
+  </data>
   <data name="SizeKeyword" xml:space="preserve">
     <value>サイズ</value>
   </data>

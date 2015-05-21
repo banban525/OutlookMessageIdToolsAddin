@@ -181,8 +181,9 @@ $SelectedText$
                 enumerator2.MoveNext();
                 ((Explorer) enumerator2.Current).CurrentFolder = folder;
                 ((Explorer) enumerator2.Current).Search(
-                    Properties.Resources.SizeKeyword + ":" + mail.Size + " " + Properties.Resources.RecievedKeyword +
-                    ":" + recieved,
+                    //Properties.Resources.SizeKeyword + ":" + ((mail.Size + 512) / 1000) + "KB " +
+                    Properties.Resources.RecievedKeyword + ":" + recieved + " " + 
+                    Properties.Resources.SenderKeyword + ":(" + mail.Sender.Name + ")",
                     OlSearchScope.olSearchScopeCurrentFolder);
 
             }
