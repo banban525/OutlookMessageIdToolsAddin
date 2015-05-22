@@ -67,23 +67,48 @@
 
     <Feature Id="ProductFeature" Title="MessageIDToolsSetup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="Ja.Components"/>
 		</Feature>
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="LocalAppDataFolder">
-				<Directory Id="INSTALLFOLDER" Name="MessageIDToolsSetup" />
-			</Directory>
-		</Directory>
-	</Fragment>
+        <Directory Id="INSTALLFOLDER" Name="MessageIDToolsSetup" >
+          <Directory Id="InstallFolderJa" Name="ja"/>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
 
 	<Fragment>
-		<ComponentGroup 
+    <ComponentGroup
+      Id="Ja.Components"
+      Directory="InstallFolderJa">
+      <Component
+        Id="Ja.Files.Component"
+        Guid="{AFF1156B-3238-4EB3-88FD-26FE3946A2B2}">
+        <File
+          Id="File.ja.MessageIDToolsAddin.resources.dll"
+          Name="MessageIDToolsAddin.resources.dll"
+          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\ja\"/>
+
+        <RemoveFolder Id="RemoveJaFolder" On="uninstall" />
+
+        <RegistryValue
+          Root='HKCU'
+          Type='string'
+          Key='Software\banban525\MessageIDTools'
+          Name='JaFolder'
+          Value='[INSTALLFOLDER]ja\'
+          KeyPath='yes' />
+      </Component>
+    </ComponentGroup>
+    <ComponentGroup 
       Id="ProductComponents" 
       Directory="INSTALLFOLDER">
       <Component
-        Id="Component.Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
+        Id="Files.Component"
         Guid="{44A6C98A-B893-4A5F-B028-4BD1FC5F0B48}">
         <File
           Id="File.Microsoft.Office.Tools.Common.v4.0.Utilities.dll"
@@ -98,10 +123,6 @@
           Id="File.MessageIDToolsAddin.dll"
           Name="MessageIDToolsAddin.dll"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
-        <File
-          Id="File.ja.MessageIDToolsAddin.resources.dll"
-          Name="MessageIDToolsAddin.resources.dll"
-          Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\ja\"/>
         <File
           Id="File.MessageIDToolsAddin.dll.config"
           Name="MessageIDToolsAddin.dll.config"
