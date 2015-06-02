@@ -22,17 +22,5 @@ namespace MessageIDToolsAddin.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string TemplatesSettings {
-            get {
-                return ((string)(this["TemplatesSettings"]));
-            }
-            set {
-                this["TemplatesSettings"] = value;
-            }
-        }
     }
 }

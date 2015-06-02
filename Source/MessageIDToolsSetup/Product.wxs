@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product 
     Id="{6381D6FD-AACE-40F3-A2DC-2C617FACB090}"
-    Name="MessageIDToolsSetup" 
+    Name="OutlookMessageIDToolsAddin" 
     Language="1033" 
     Version="1.0.1.0" 
     Manufacturer="banban525" 
@@ -39,7 +39,7 @@
     	Take note: There should be no whitespace in the key!
       -->
     <Property Id="VSTOCustomAction_PublicKey"><![CDATA[<RSAKeyValue><Modulus>6FIt/+0r4p1+MXUPMhHdt2X7VIBQcBiCD+cg7F4AYN4jIyNzjDIyc4hiUfR/feI91qLH9L7d0RHXH8UPk+F2L4OofBO6KOtFBWiH7WD7ESF1FCnZq08o4Zex4ynqiIpF7vBiDDXkLFforDRUknmKXXkVRXfVIGOmY/Z9/ynXvHE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>]]></Property>
-    <CustomAction Id="PropertyAssign_ManifestLocation" Property="VSTOCustomAction_ManifestLocation" Value="[INSTALLFOLDER]MessageIDToolsAddin.vsto" />
+    <CustomAction Id="PropertyAssign_ManifestLocation" Property="VSTOCustomAction_ManifestLocation" Value="[InstallFolderBin]MessageIDToolsAddin.vsto" />
 
     <!-- Properties to check prerequisites -->
     <Property Id="VSTORUNTIME">
@@ -65,8 +65,9 @@
       <Custom Action="RemoveFromInclusionList" After="InstallFinalize"><![CDATA[(&ProductFeature = 2) AND NOT (!ProductFeature = 2)]]></Custom>
     </InstallExecuteSequence>
 
-    <Feature Id="ProductFeature" Title="MessageIDToolsSetup" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
+    <Feature Id="ProductFeature" Title="OutlookMessageIDToolsAddin" Level="1">
+      <ComponentGroupRef Id="RootComponents" />
+      <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="Ja.Components"/>
 		</Feature>
 	</Product>
@@ -74,14 +75,32 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="LocalAppDataFolder">
-        <Directory Id="INSTALLFOLDER" Name="MessageIDToolsSetup" >
-          <Directory Id="InstallFolderJa" Name="ja"/>
+        <Directory Id="INSTALLFOLDER" Name="OutlookMessageIDToolsAddin" >
+          <Directory Id="InstallFolderBin" Name="bin">
+            <Directory Id="InstallFolderJa" Name="ja"/>
+          </Directory>
         </Directory>
       </Directory>
     </Directory>
   </Fragment>
 
 	<Fragment>
+    <ComponentGroup
+      Id="RootComponents"
+      Directory="INSTALLFOLDER">
+      <Component
+        Id="Remove.Root.Component"
+        Guid="{66FBA09E-3E0E-4EA1-B718-560688014E69}">
+        <RemoveFolder Id="RemoveRootFolder" On="uninstall"/>
+        <RegistryValue
+          Root='HKCU'
+          Type='string'
+          Key='Software\banban525\MessageIDTools'
+          Name='INSTALLFOLDER'
+          Value='[INSTALLFOLDER]'
+          KeyPath='yes' />
+      </Component>
+    </ComponentGroup>
     <ComponentGroup
       Id="Ja.Components"
       Directory="InstallFolderJa">
@@ -106,7 +125,7 @@
     </ComponentGroup>
     <ComponentGroup 
       Id="ProductComponents" 
-      Directory="INSTALLFOLDER">
+      Directory="InstallFolderBin">
       <Component
         Id="Files.Component"
         Guid="{44A6C98A-B893-4A5F-B028-4BD1FC5F0B48}">
@@ -146,8 +165,8 @@
           Root='HKCU'
           Type='string'
           Key='Software\banban525\MessageIDTools'
-          Name='InstallFolder'
-          Value='[INSTALLFOLDER]'
+          Name='BinFolder'
+          Value='[InstallFolderBin]'
           KeyPath='yes' />
       </Component>
 
@@ -183,7 +202,7 @@
           Root="HKCU"
           Key="Software\Microsoft\Office\Outlook\AddIns\MessageIDTools-Addin"
           Name="Manifest"
-          Value="[INSTALLFOLDER]MessageIDToolsAddin.vsto|vstolocal"
+          Value="[InstallFolderBin]MessageIDToolsAddin.vsto|vstolocal"
           Type="string" 
           KeyPath="yes" />
       </Component>

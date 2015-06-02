@@ -26,13 +26,28 @@ $SelectedText$
 ";
         private Templates _templates = Templates.Empty;
 
+        private readonly string _settingsFilePath;
 
         public MessageIDToolsController()
         {
-            //Help.ShowHelp(this, "", HelpNavigator.Topic, "");
             _interceptKeys.KeyIntercepted += _interceptKeys_KeyIntercepted;
 
-            if (string.IsNullOrEmpty(Properties.Settings.Default.TemplatesSettings))
+            string installFolder = null;
+            using (var registryKey = Registry.CurrentUser.OpenSubKey(@"Software\banban525\MessageIDTools"))
+            {
+                if (registryKey != null)
+                {
+                    installFolder = registryKey.GetValue("InstallFolder").ToString();
+                }
+            }
+            if (installFolder != null)
+            {
+                _settingsFilePath = Path.Combine(installFolder, "Settings.xml");
+            }
+
+
+
+            if (_settingsFilePath == null || File.Exists(_settingsFilePath) == false)
             {
                 SetDefaultTemplates();
             }
@@ -41,8 +56,10 @@ $SelectedText$
                 try
                 {
                     var serializer = new TemplatesSerializer();
-
-                    _templates = serializer.XmlDeserialize(Properties.Settings.Default.TemplatesSettings);
+                    using (var stream = new FileStream(_settingsFilePath, FileMode.Open))
+                    {
+                        _templates = serializer.Deserialize(stream);
+                    }
                 }
                 catch (System.Runtime.Serialization.SerializationException)
                 {
@@ -53,15 +70,26 @@ $SelectedText$
 
         private void SetDefaultTemplates()
         {
-            var serializer = new TemplatesSerializer();
-
             _templates = new Templates(new[]
             {
                 new TemplateData(DefaultTemplate, false, HotKeyData.Empty),
                 new TemplateData(DefaultTemplate, false, HotKeyData.Empty),
                 new TemplateData(DefaultTemplate, false, HotKeyData.Empty),
             });
-            Properties.Settings.Default.TemplatesSettings = serializer.XmlSerialize(_templates);
+            Save();
+        }
+
+        private void Save()
+        {
+            if (_settingsFilePath == null)
+            {
+                return;
+            }
+            var serializer = new TemplatesSerializer();
+            using (var stream = new FileStream(_settingsFilePath, FileMode.Create))
+            {
+                serializer.Serialize(stream, _templates);
+            }
         }
 
         private void _interceptKeys_KeyIntercepted(object sender, InterceptKeysEventArgs e)
@@ -235,9 +263,7 @@ $SelectedText$
             if (dialogResult == DialogResult.OK)
             {
                 _templates = dlg.Content;
-                var serializer = new TemplatesSerializer();
-                Properties.Settings.Default.TemplatesSettings = serializer.XmlSerialize(_templates);
-                Properties.Settings.Default.Save();
+                Save();
             }
         }
 
