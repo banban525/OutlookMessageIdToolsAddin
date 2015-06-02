@@ -4,7 +4,7 @@
     Id="{6381D6FD-AACE-40F3-A2DC-2C617FACB090}"
     Name="OutlookMessageIDToolsAddin" 
     Language="1033" 
-    Version="1.0.1.0" 
+    Version="1.1.1.0" 
     Manufacturer="banban525" 
     UpgradeCode="7affa6de-98c0-473c-a5c5-652dd9c7d874">
 		<Package 
