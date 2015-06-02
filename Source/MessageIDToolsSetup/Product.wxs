@@ -26,7 +26,7 @@
     <!-- インストール先と機能を選べるUIを表示する -->
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />
-
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
 
     <!-- Include the VSTO Custom action  -->
     <Binary Id="VSTOCustomAction" SourceFile="..\VSTOCustomActions\bin\$(var.Configuration)\VSTOCustomActions.CA.dll"/>
@@ -65,10 +65,14 @@
       <Custom Action="RemoveFromInclusionList" After="InstallFinalize"><![CDATA[(&ProductFeature = 2) AND NOT (!ProductFeature = 2)]]></Custom>
     </InstallExecuteSequence>
 
-    <Feature Id="ProductFeature" Title="OutlookMessageIDToolsAddin" Level="1">
+    <Feature Id="ProductFeature" Title="OutlookMessageIDToolsAddin" Level="1" Display="expand" Absent="disallow">
       <ComponentGroupRef Id="RootComponents" />
       <ComponentGroupRef Id="ProductComponents" />
-      <ComponentGroupRef Id="Ja.Components"/>
+      <Feature Id="Languages.Feature" Title="Languages" Level="1" Display="expand">
+        <Feature Id="Japanese.Feature" Title="Japanese" Level="1" Display="expand">
+          <ComponentGroupRef Id="Ja.Components"/>
+        </Feature>
+      </Feature>
 		</Feature>
 	</Product>
 
