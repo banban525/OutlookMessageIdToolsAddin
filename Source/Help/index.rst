@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Outlook MessageID Tools Addin 1.0.1
+Outlook MessageID Tools Addin 1.1.2
 =======================================
 
 MessageIDToolsAddin をご使用いただきありがとうございます。
