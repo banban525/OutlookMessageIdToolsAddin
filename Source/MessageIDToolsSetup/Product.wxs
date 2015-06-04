@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product 
-    Id="{6381D6FD-AACE-40F3-A2DC-2C617FACB090}"
+    Id="*"
     Name="OutlookMessageIDToolsAddin" 
     Language="1033" 
     Version="1.1.1.0" 
@@ -222,7 +222,18 @@
           Type="integer"
           KeyPath="yes" />
       </Component>
-
+      <Component
+        Id="Registry_ProductCode"
+        Guid="{A2E36F4B-656D-4E24-AC13-B3673E0D9FCE}">
+        <RegistryValue
+          Id="RegKey_ProductCode" 
+          Root="HKCU"
+          Key="Software\banban525\MessageIDTools"
+          Name="ProductCode"
+          Value="[ProductCode]"
+          Type="string"
+          KeyPath="yes"/>
+      </Component>
     </ComponentGroup>
 	</Fragment>
 </Wix>
