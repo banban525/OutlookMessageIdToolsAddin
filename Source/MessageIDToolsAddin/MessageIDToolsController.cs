@@ -287,7 +287,7 @@ $SelectedText$
                 {
                     return string.Empty;
                 }
-                var registryValue = subkey.GetValue("InstallFolder", "").ToString();
+                var registryValue = subkey.GetValue("BinFolder", "").ToString();
                 if (string.IsNullOrEmpty(registryValue) == false)
                 {
                     pluginDir = registryValue;
