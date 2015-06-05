@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>OutlookMessageIdToolsAddin</id>
+    <title>Outlook MessageIdTools Addin</title>
+    <version>0.0.1</version>
+    <authors>banban525</authors>
+    <owners>banban525</owners>
+    <summary>a addin for Message Id on Outlook</summary>
+    <description>This is a addin for Message Id on Outlook. 
+    You can get a Message Id from a message on Outlook, and you can search a message with the Message Id.</description>
+    <projectUrl>https://github.com/banban525/OutlookMessageIdToolsAddin</projectUrl>
+    <tags>Office Outlook</tags>
+    <copyright>Copyright (C) 2015 banban525</copyright>
+    <licenseUrl>https://github.com/banban525/OutlookMessageIdToolsAddin/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
