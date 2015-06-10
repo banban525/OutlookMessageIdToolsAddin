@@ -14,7 +14,7 @@ try
     & .\make.bat htmlhelp
     $ErrorActionPreference = "Stop"
     & "C:\Program Files (x86)\HTML Help Workshop\hhc.exe"  '.\_build\htmlhelp\MessageIDToolsAddin.hhp'
-    & '.\_build\htmlhelp\MessageIDToolsAddin.chm'
+    #& '.\_build\htmlhelp\MessageIDToolsAddin.chm'
     
 }
 finally
