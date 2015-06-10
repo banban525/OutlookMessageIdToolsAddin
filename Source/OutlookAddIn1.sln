@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "MessageIDToolsSetup", "MessageIDToolsSetup\MessageIDToolsSetup.wixproj", "{79395DF0-4E6E-402A-B6CA-9454E4ED8551}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E50D6416-C2FC-4E79-A795-C29D4C41740B} = {E50D6416-C2FC-4E79-A795-C29D4C41740B}
+		{3BF3EDE3-8FC1-4DAD-AD60-E5CA296B7EDB} = {3BF3EDE3-8FC1-4DAD-AD60-E5CA296B7EDB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSTOCustomActions", "VSTOCustomActions\VSTOCustomActions.csproj", "{E50D6416-C2FC-4E79-A795-C29D4C41740B}"
 EndProject
