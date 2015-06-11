@@ -110,7 +110,7 @@ namespace MessageIDToolsAddin.Properties {
         }
         
         /// <summary>
-        ///   Recieved に類似しているローカライズされた文字列を検索します。
+        ///   Received に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string RecievedKeyword {
             get {
@@ -119,7 +119,7 @@ namespace MessageIDToolsAddin.Properties {
         }
         
         /// <summary>
-        ///   Sender に類似しているローカライズされた文字列を検索します。
+        ///   From に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string SenderKeyword {
             get {
