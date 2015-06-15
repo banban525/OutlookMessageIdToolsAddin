@@ -1,6 +1,8 @@
 Outlook MessageIdTools Addin
 ==============================
 
+[To Japanese](https://github.com/banban525/OutlookMessageIdToolsAddin/blob/master/README.ja.md)
+
 Outlook MessageIdTools Addin is a addin for Message Id on Outlook. 
 You can get a Message Id from a message on Outlook, and you can search a message with the Message Id.
 
@@ -40,7 +42,7 @@ Search a mail by Message Id.
 
 ## Download
 
-you can download latest msi package or older following:
+you can download msi package following:
 
 [v1.1.2](https://github.com/banban525/OutlookMessageIdToolsAddin/releases/download/v1.1.2/OutlookMessageIDToolsAddin.1.1.2.msi)
 
@@ -48,7 +50,7 @@ you can download latest msi package or older following:
 ## Install
 
 1. download msi package.
-2. Luanch msi package.
+2. Luanch msi package to install.
 
 
 Also, you can install with chocolatey. The command is follows:
