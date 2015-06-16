@@ -1,7 +1,7 @@
 Outlook MessageIdTools Addin
 ==============================
 
-[To English](https://github.com/banban525/OutlookMessageIdToolsAddin/blob/master/README.ja.md)
+[To English](https://github.com/banban525/OutlookMessageIdToolsAddin/blob/master/README.md)
 
 Outlook MessageIdTools Addin は、OutlookでメッセージIDを扱うためのアドインです。
 このアドインを使うことで、OutlookでメッセージIDの取得やメッセージIDを使った検索ができます。
