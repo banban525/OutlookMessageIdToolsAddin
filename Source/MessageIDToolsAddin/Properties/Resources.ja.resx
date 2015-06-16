@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HelpFileName" xml:space="preserve">
-    <value>MessageIDToolsAddin.chm</value>
+    <value>MessageIDToolsAddin.ja.chm</value>
   </data>
   <data name="RecievedKeyword" xml:space="preserve">
     <value>受信日時</value>

@@ -101,7 +101,7 @@ namespace MessageIDToolsAddin.Properties {
         }
         
         /// <summary>
-        ///   MessageIDToolsAddin.chm に類似しているローカライズされた文字列を検索します。
+        ///   MessageIDToolsAddin.en.chm に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string HelpFileName {
             get {

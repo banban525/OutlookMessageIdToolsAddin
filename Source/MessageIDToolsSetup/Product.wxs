@@ -159,9 +159,13 @@
           Name="MessageIDToolsAddin.vsto"
           Source="..\MessageIDToolsAddin\bin\$(var.Configuration)\"/>
         <File
-          Id="File.Help"
-          Name="MessageIDToolsAddin.chm"
-          Source="..\Help\_build\htmlhelp\MessageIDToolsAddin.chm"/>
+          Id="File.Help.ja"
+          Name="MessageIDToolsAddin.ja.chm"
+          Source="..\Help\_build\htmlhelpja\MessageIDToolsAddin.chm"/>
+        <File
+          Id="File.Help.en"
+          Name="MessageIDToolsAddin.en.chm"
+          Source="..\Help\_build\htmlhelpen\MessageIDToolsAddin.chm"/>
 
         <RemoveFolder Id="RemoveThisFolder" On="uninstall" />
 
