@@ -1,0 +1,42 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2015, banban525
+# This file is distributed under the same license as the MessageIDToolsAddin package.
+# <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MessageIDToolsAddin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-16 09:11\n"
+"PO-Revision-Date: 2015-06-16 22:07+0900\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+# 3fee2f6a45b64afda7c5e6399a36d180
+#: ..\..\index.rst:7
+msgid "Outlook MessageID Tools Addin 1.1.2"
+msgstr "Outlook MessageID Tools Addin 1.1.2"
+
+# 39ce73ed92374992b54bcb5cc8bbe90b
+#: ..\..\index.rst:9
+msgid "MessageIDToolsAddin をご使用いただきありがとうございます。"
+msgstr "Thank you for using MessageIDToolsAddin."
+
+# 8a5728d41a1141619ee35ce16f708ae7
+#: ..\..\index.rst:11
+msgid ""
+"このアドインは、OutlookにMessageIDを取り出す機能とMessageIDを使った検索機能を"
+"付加します。"
+msgstr ""
+"You can get a Message Id from a message on Outlook, and you can search a "
+"message with the Message Id using this addin."
+
+# 11c9c6f68f4441d4a2f8b5b66636f088
+#: ..\..\index.rst:14
+msgid "ヘルプのコンテンツ"
+msgstr "Contents"

@@ -57,6 +57,8 @@ release = '1.0.0'
 #language = None
 language = 'ja'
 
+locale_dirs = ["locale"]
+
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
 #today = ''

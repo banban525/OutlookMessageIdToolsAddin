@@ -109,6 +109,24 @@ if "%1" == "htmlhelp" (
 	goto end
 )
 
+if "%1" == "htmlhelpja" (
+	%SPHINXBUILD% -b htmlhelp -D language=ja %ALLSPHINXOPTS% %BUILDDIR%/htmlhelpja
+	if errorlevel 1 exit /b 1
+	echo.
+	echo.Build finished; now you can run HTML Help Workshop with the ^
+.hhp project file in %BUILDDIR%/htmlhelp.
+	goto end
+)
+
+if "%1" == "htmlhelpen" (
+	%SPHINXBUILD% -b htmlhelp -D language=en %ALLSPHINXOPTS% %BUILDDIR%/htmlhelpen
+	if errorlevel 1 exit /b 1
+	echo.
+	echo.Build finished; now you can run HTML Help Workshop with the ^
+.hhp project file in %BUILDDIR%/htmlhelp.
+	goto end
+)
+
 if "%1" == "qthelp" (
 	%SPHINXBUILD% -b qthelp %ALLSPHINXOPTS% %BUILDDIR%/qthelp
 	if errorlevel 1 exit /b 1

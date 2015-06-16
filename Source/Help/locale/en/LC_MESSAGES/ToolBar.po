@@ -1,0 +1,93 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2015, banban525
+# This file is distributed under the same license as the MessageIDToolsAddin package.
+# <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MessageIDToolsAddin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-16 09:11\n"
+"PO-Revision-Date: 2015-06-16 22:16+0900\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+# b0edc7e70e6f4ee0b3ef1a36c1a32a46
+#: ..\..\ToolBar.rst:2
+msgid "ツールバー"
+msgstr "Toolbar"
+
+# abe886dec3f248a8a4dcb0f4dad85c44
+#: ..\..\ToolBar.rst:4
+msgid "本アドインのメイン機能です。"
+msgstr "This is main functions in the addin."
+
+# 107d22e8665941c8b89177b1a2458fb0
+#: ..\..\ToolBar.rst:8
+msgid "なお、アイコンはOutlookの機能で配置をカスタマイズできます。"
+msgstr "you can customize icons location in the toolbar."
+
+# e54612530ed740d3b2428551290b8349
+#: ..\..\ToolBar.rst:12
+msgid "Copy1、Copy2、Copy3"
+msgstr "Copy1、Copy2、Copy3"
+
+# e8a4c742fa1a4259b9bf82f5688a4917
+#: ..\..\ToolBar.rst:14
+msgid ""
+"Settingsで登録したテンプレートに従って、コンテンツをクリップボードにコピーし"
+"ます。"
+msgstr ""
+"Copy a content to clipboard according to the template that was registered in "
+"the Settings"
+
+# 1a825fdfd7784140a373ca349ddce15d
+#: ..\..\ToolBar.rst:17
+msgid "MessageID"
+msgstr "MessageID"
+
+# 283c0f6307924257ab7f6ee2abd8eb08
+#: ..\..\ToolBar.rst:19
+msgid ""
+"メッセージボックスにメッセージIDを入力してEnterキーを押すと メッセージIDを基"
+"にメールを検索します。 検索はOutlookの検索機能を使います。 検索を解除すれば、"
+"選択状態のままフィルタが解除されますので 前後のメールも見ることができます。"
+msgstr ""
+"Search a mail by Message Id when you press Enter Key with Message Id in the "
+"textbox. The search function is in Outlook. You can find around mails if you "
+"cancel the search."
+
+# aee4bb80e80c4d15a7bfff82482cbac5
+#: ..\..\ToolBar.rst:25
+msgid "メッセージIDは以下のような形で入力してください。.."
+msgstr "Please message ID is entered in the following form . .."
+
+# 3d353cb8202e487d99173db8786f897d
+#: ..\..\ToolBar.rst:27
+msgid "<xxxx@xxxx.xx>"
+msgstr "<xxxx@xxxx.xx>"
+
+# 4cc6b633f37e45b0a62dd74849c658ec
+#: ..\..\ToolBar.rst:31
+msgid "Settings"
+msgstr "Settings"
+
+# f8b44f47776e45d19cf72705e2c08b11
+#: ..\..\ToolBar.rst:33
+msgid "設定画面を開きます。"
+msgstr "Open Settings Form."
+
+# f6ddc0134b4048a0b94633423acf1086
+#: ..\..\ToolBar.rst:37
+msgid "Help"
+msgstr "Help"
+
+# d41774cb72214036bc14ff2a12b6b6b1
+#: ..\..\ToolBar.rst:39
+msgid "ヘルプを開きます。"
+msgstr "Open a Help file."

@@ -1,0 +1,138 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2015, banban525
+# This file is distributed under the same license as the MessageIDToolsAddin package.
+# <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MessageIDToolsAddin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-16 09:11\n"
+"PO-Revision-Date: 2015-06-16 22:12+0900\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+# f16b6a26f29b45eb830f604e4191e20f
+#: ..\..\Settings.rst:2
+msgid "設定画面"
+msgstr "Settings"
+
+# 169a5ce0da80472d8fdbf6b8724e9632
+#: ..\..\Settings.rst:7
+msgid "テンプレート"
+msgstr "Template"
+
+# 0a23d49989354d81b2c9bede9c665240
+#: ..\..\Settings.rst:9
+msgid ""
+"Copy1～3のボタンを押した際、クリップボードにコピーされる内容のテンプレートを"
+"指定します。 下記のマクロを使用すると、クリップボードへのコピー時にメールコン"
+"テンツに置換されます。"
+msgstr ""
+"Set a template for copying clipboard when Copy 1,2,3 button pressed. The "
+"following macro is replaced during the copy."
+
+# e3ba5ad0fe5c4b17a991f65edb5b6e7b
+#: ..\..\Settings.rst:13
+msgid "Insert Macro"
+msgstr "Insert Macro"
+
+# 1ef688ee2d584c64b3dca2433113d587
+#: ..\..\Settings.rst:15
+msgid "選択したマクロがテンプレートに追加されます。"
+msgstr "Add a selected macro to the template."
+
+# fc4bc5d43c9e4ef1876bf74378a1c4c7
+#: ..\..\Settings.rst:18
+msgid "マクロ"
+msgstr "Macro"
+
+# a4e2d8fa48294e7fb623d1190a01aace
+#: ..\..\Settings.rst:18
+msgid "説明"
+msgstr "Description"
+
+# e4a40474fd5f4867b3c222738b8e051e
+#: ..\..\Settings.rst:20
+msgid "$MessageID$"
+msgstr "$MessageID$"
+
+# a0d68e352186491ba545dcb8a99c527c
+#: ..\..\Settings.rst:20
+msgid "メールのメッセージIDに置換されます。"
+msgstr "Replace to a Message Id."
+
+# 5778e8a4c2f64fe29ee5d3ac52b154e8
+#: ..\..\Settings.rst:21
+msgid "$Subject$"
+msgstr "$Subject$"
+
+# ae9c92a00c3f4161b1fe4e617950f1ce
+#: ..\..\Settings.rst:21
+msgid "メールの題名に置換されます。"
+msgstr "Replace to a mail subject."
+
+# 7946e5b1ac6f4a0c998247e97f624576
+#: ..\..\Settings.rst:22
+msgid "$Body$"
+msgstr "$Body$"
+
+# 373b3624a9184c19b21b58fb5cd5722a
+#: ..\..\Settings.rst:22
+msgid "メールの本文に置換されます。"
+msgstr "Replace to mail body."
+
+# 0bf02aa138cf4c4aaeef0c3cbc187362
+#: ..\..\Settings.rst:23
+msgid "$SelectedText$"
+msgstr "$SelectedText$"
+
+# c89bdca45d344e9e9b201c40edc42927
+#: ..\..\Settings.rst:23
+msgid "メールの選択された文字に置換されます。"
+msgstr "Replace to selected text."
+
+# 84d978543f944f9f9a4dbf8ffb17efc8
+#: ..\..\Settings.rst:24
+msgid "$Sender$"
+msgstr "$Sender$"
+
+# 8de518ac8f2441ad9fbd9578051f3d5d
+#: ..\..\Settings.rst:24
+msgid "メールの送信者に置換されます。"
+msgstr "Replace to mail sender."
+
+# 58f300c4ddeb494f907dd7e3ae7e40aa
+#: ..\..\Settings.rst:25
+msgid "$SenderAddress$"
+msgstr "$SenderAddress$"
+
+# e86bb32b0a3348aabfb3b608888fedc2
+#: ..\..\Settings.rst:25
+msgid "メールの送信者のメールアドレスに置換されます。"
+msgstr "Replace to sender mail address."
+
+# 302413b39ea943be978ae5fb4c8883ce
+#: ..\..\Settings.rst:26
+msgid "$RecievedDateTime$"
+msgstr "$RecievedDateTime$"
+
+# 86ebfedf356542819470e2a1cda88c33
+#: ..\..\Settings.rst:26
+msgid "メールの受信日時に置換されます。"
+msgstr "Replace to received date time."
+
+# 742c103d76f54841ac42ee4b68ae167f
+#: ..\..\Settings.rst:31
+msgid "Hot Key"
+msgstr "Hot Key"
+
+# 5947bc480b284c7998bbc94ec1def0bd
+#: ..\..\Settings.rst:33
+msgid "チェックをONにすると設定したショートカットキーが有効になります。"
+msgstr "Enable shortcut key, if check is on."

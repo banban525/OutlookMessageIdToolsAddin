@@ -1,4 +1,7 @@
 Param(
+[parameter(Mandatory=$true, HelpMessage="set to language.(ja|en)")]
+[ValidateSet("ja", "en")]
+[string]$language
 )
 
 $ErrorActionPreference = "Stop"
@@ -10,10 +13,19 @@ $scriptDir = Split-Path ( & { $MyInvocation.ScriptName }) -Parent
 Push-Location $scriptDir
 try
 {
-    $ErrorActionPreference = "Continue"
-    & .\make.bat htmlhelp
-    $ErrorActionPreference = "Stop"
-    & "C:\Program Files (x86)\HTML Help Workshop\hhc.exe"  '.\_build\htmlhelp\MessageIDToolsAddin.hhp'
+    if($language -eq "ja")
+    {
+        $ErrorActionPreference = "Continue"
+        & .\make.bat htmlhelpja
+        $ErrorActionPreference = "Stop"
+    }
+    else
+    {
+        $ErrorActionPreference = "Continue"
+        & .\make.bat htmlhelpen
+        $ErrorActionPreference = "Stop"
+    }
+    & "C:\Program Files (x86)\HTML Help Workshop\hhc.exe"  ('.\_build\htmlhelp{0}\MessageIDToolsAddin.hhp' -f ($language))
     #& '.\_build\htmlhelp\MessageIDToolsAddin.chm'
     
 }
