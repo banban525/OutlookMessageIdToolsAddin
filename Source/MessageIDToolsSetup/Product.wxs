@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product 
     Id="*"
     Name="OutlookMessageIDToolsAddin" 
     Language="1033" 
-    Version='1.1.2.0' 
+    Version='1.2.0' 
     Manufacturer="banban525" 
     UpgradeCode="7affa6de-98c0-473c-a5c5-652dd9c7d874">
 		<Package 
@@ -13,19 +13,19 @@
       Compressed="yes"
       InstallScope="perUser" />
 
-   
+
     <Upgrade Id='7affa6de-98c0-473c-a5c5-652dd9c7d874'>
+      <UpgradeVersion OnlyDetect='yes' Property='NEWERFOUND'
+                      Minimum='1.2.0' IncludeMinimum='no' />
     <UpgradeVersion OnlyDetect='no' Property='PREVIOUSFOUND'
-                    Maximum='1.1.2.0' IncludeMaximum='no' />
+                    Maximum='1.2.0' IncludeMaximum='no' />
     </Upgrade>
-    
-    <CustomAction 
-      Id='NoDowngrade'
-      Error='[ProductName] is already installed newer version.' />
-    <InstallExecuteSequence>
-      <Custom Action='NoDowngrade' After='FindRelatedProducts'>NEWERFOUND</Custom>
-      <RemoveExistingProducts After='InstallInitialize'/>
-    </InstallExecuteSequence>
+        <CustomAction Id='AlreadyUpdated'
+                  Error='[ProductName] is already installed.' />
+    <CustomAction Id='NoDowngrade'
+                  Error='[ProductName] is already installed newer version.' />
+
+
     
     <!-- msiにすべて含める -->
     <Media Id='1' Cabinet='MessageIDTools.cab' EmbedCab='yes' DiskPrompt='CD-ROM [1]' />
@@ -74,6 +74,9 @@
       <Custom Action="AddToInclusionList" After="InstallFinalize"><![CDATA[(&ProductFeature = 3) AND NOT (!ProductFeature = 3)]]></Custom>
       <Custom Action="PropertyAssign_ManifestLocation" Before="AddToInclusionList"><![CDATA[(&ProductFeature = 3) AND NOT (!ProductFeature = 3)]]></Custom>
       <Custom Action="RemoveFromInclusionList" After="InstallFinalize"><![CDATA[(&ProductFeature = 2) AND NOT (!ProductFeature = 2)]]></Custom>
+      <RemoveExistingProducts After='InstallFinalize'/>
+      <Custom Action='AlreadyUpdated' After='FindRelatedProducts'>SELFFOUND</Custom>
+      <Custom Action='NoDowngrade' After='FindRelatedProducts'>NEWERFOUND</Custom>
     </InstallExecuteSequence>
 
     <Feature Id="ProductFeature" Title="OutlookMessageIDToolsAddin" Level="1" Display="expand" Absent="disallow">
