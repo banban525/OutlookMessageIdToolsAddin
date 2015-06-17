@@ -13,8 +13,19 @@
       Compressed="yes"
       InstallScope="perUser" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
    
+    <Upgrade Id='7affa6de-98c0-473c-a5c5-652dd9c7d874'>
+    <UpgradeVersion OnlyDetect='no' Property='PREVIOUSFOUND'
+                    Maximum='1.1.2.0' IncludeMaximum='no' />
+    </Upgrade>
+    
+    <CustomAction 
+      Id='NoDowngrade'
+      Error='[ProductName] is already installed newer version.' />
+    <InstallExecuteSequence>
+      <Custom Action='NoDowngrade' After='FindRelatedProducts'>NEWERFOUND</Custom>
+      <RemoveExistingProducts After='InstallInitialize'/>
+    </InstallExecuteSequence>
     
     <!-- msiにすべて含める -->
     <Media Id='1' Cabinet='MessageIDTools.cab' EmbedCab='yes' DiskPrompt='CD-ROM [1]' />
