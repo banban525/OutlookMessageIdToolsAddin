@@ -44,7 +44,7 @@ Outlook MessageIdTools Addin は、OutlookでメッセージIDを扱うための
 
 以下からダウンロードできます。
 
-[v1.1.2](https://github.com/banban525/OutlookMessageIdToolsAddin/releases/download/v1.1.2/OutlookMessageIDToolsAddin.1.1.2.msi)
+[v1.1.3](https://github.com/banban525/OutlookMessageIdToolsAddin/releases/download/v1.1.3/OutlookMessageIDToolsAddin.1.1.3.msi)
 
 
 ## インストール
@@ -58,7 +58,7 @@ Outlook MessageIdTools Addin は、OutlookでメッセージIDを扱うための
 
 ## 開発方法
 
-1. フォークしてください ( https://github.com/banban525/ApplicationRegistries/fork )
+1. フォークしてください ( https://github.com/banban525/OutlookMessageIdToolsAddin/fork )
 2. 機能ブランチを作ってください (git checkout -b my-new-feature)
 3. コミットしてください (git commit -am 'Add some feature')
 4. ブランチをプッシュしてください (git push origin my-new-feature)

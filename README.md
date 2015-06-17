@@ -44,7 +44,7 @@ Search a mail by Message Id.
 
 you can download msi package following:
 
-[v1.1.2](https://github.com/banban525/OutlookMessageIdToolsAddin/releases/download/v1.1.2/OutlookMessageIDToolsAddin.1.1.2.msi)
+[v1.1.3](https://github.com/banban525/OutlookMessageIdToolsAddin/releases/download/v1.1.3/OutlookMessageIDToolsAddin.1.1.3.msi)
 
 
 ## Install
