@@ -101,7 +101,7 @@ task BuildChocolateyPackage -depends BuildInstaller {
     Set-Content ".\Chocolatey\OutlookMessageIdToolsAddin\OutlookMessageIdToolsAddin.nuspec" $content -Encoding UTF8
 
     $installScript = Get-Content ".\Chocolatey\OutlookMessageIdToolsAddin\tools\chocolateyInstall.ps1" -Encoding UTF8
-    $installScript = $installScript -replace '\$url *= *.+',('$url = '+$installerAddress)
+    $installScript = $installScript -replace '\$url *= *.+',('$url = "' + $installerAddress + '"')
     Set-Content ".\Chocolatey\OutlookMessageIdToolsAddin\tools\chocolateyInstall.ps1" $installScript -Encoding UTF8
 
     try
