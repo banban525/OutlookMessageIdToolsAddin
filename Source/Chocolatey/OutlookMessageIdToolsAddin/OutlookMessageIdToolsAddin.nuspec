@@ -14,7 +14,10 @@
     <copyright>Copyright (C) 2015 banban525</copyright>
     <licenseUrl>https://github.com/banban525/OutlookMessageIdToolsAddin/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Fixed issues.
+#6 Not open the help file.
+#7 Do not work MessageId Search Function in English.
+    </releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
