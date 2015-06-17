@@ -1,9 +1,6 @@
 properties {
   $version = "1.1.3"
-  $ftpUser = "banban525"
-  $ftpPassword = ""
-  $ftpDirAddress = "ftp://banban525.sakura.ne.jp/www/OutlookMessageIdToolsAddin/installers"
-  $donwloadDirAddress = "http://banban525.sakura.ne.jp/OutlookMessageIdToolsAddin/installers"
+  $donwloadAddressTemplate = "https://github.com/banban525/OutlookMessageIdToolsAddin/releases/download/v{0}/OutlookMessageIDToolsAddin.{0}.msi"
   $deply = $false
 }
 
@@ -21,7 +18,7 @@ task Clean {
 
 task BuildHelp -depends BuildJaHelp, BuildEnHelp
 
-task BuildJaHelp {
+task BuildJaHelp -depends Clean {
     # set version to help document.
     $content = Get-Content ".\Help\index.rst" -Encoding UTF8
     $content = $content -replace "Outlook MessageID Tools Addin [0-9\.]+","Outlook MessageID Tools Addin $version"
@@ -29,7 +26,7 @@ task BuildJaHelp {
 
     try
     {
-        & ".\Help\makechm.ps1"
+        & ".\Help\makechm.ps1" "ja"
     }
     finally
     {
@@ -37,13 +34,27 @@ task BuildJaHelp {
     }
 }
 
-task BuildEnHelp {
+task BuildEnHelp -depends Clean {
+    # set version to help document.
+    $content = Get-Content ".\Help\index.rst" -Encoding UTF8
+    $content = $content -replace "Outlook MessageID Tools Addin [0-9\.]+","Outlook MessageID Tools Addin $version"
+    Set-Content ".\Help\index.rst" $content -Encoding UTF8
+
+    try
+    {
+        & ".\Help\makechm.ps1" "en"
+    }
+    finally
+    {
+        exec { git.exe checkout .\Help\index.rst }
+    }
 }
 
 task BuildInstaller -depends BuildAssembly, BuildHelp {
     # set version to installer scripts
     $content = Get-Content ".\MessageIDToolsSetup\Product.wxs" -Encoding UTF8
-    $content = $content -replace "Version *= *=`"[0-9]\.[0-9]\.[0-9]`"", "Version =`"$version`""
+    $content = $content -replace "Version *= *`"[0-9]\.[0-9]\.[0-9]`"", "Version =`"$version`""
+    $content = $content -replace "Maximum *= *`"[0-9]\.[0-9]\.[0-9]`"", "Maximum =`"$version`""
     Set-Content ".\MessageIDToolsSetup\Product.wxs" $content -Encoding UTF8
 
     try
@@ -59,27 +70,29 @@ task BuildInstaller -depends BuildAssembly, BuildHelp {
     {
         exec { git.exe checkout .\MessageIDToolsSetup\Product.wxs }
     }
+
+    Copy-Item ".\MessageIDToolsSetup\bin\Release\OutlookMessageIDToolsAddin.msi" (".\OutlookMessageIDToolsAddin.{0}.msi" -f ($version))
 }
 
-task DeployInstaller -depends BuildInstaller {
-    $scriptDir = Split-Path ( & { $MyInvocation.ScriptName }) -Parent
-    $installerAddress = New-Object System.Uri("$ftpDirAddress/OutlookMessageIdToolsAddin.$version.msi")
-    $localFilePath = Join-Path $scriptDir "MessageIDToolsSetup\bin\Release\OutlookMessageIDToolsAddin.msi"
+#task DeployInstaller -depends BuildInstaller {
+#    $scriptDir = Split-Path ( & { $MyInvocation.ScriptName }) -Parent
+#    $installerAddress = New-Object System.Uri("$ftpDirAddress/OutlookMessageIdToolsAddin.$version.msi")
+#    $localFilePath = Join-Path $scriptDir "MessageIDToolsSetup\bin\Release\OutlookMessageIDToolsAddin.msi"
+#
+#    $wc = New-Object System.Net.WebClient
+#    $wc.Credentials = New-Object System.Net.NetworkCredential($ftpUser,$ftpPassword)
+#    
+#    if($deply)
+#    {
+#        $wc.UploadFile($installerAddress, $localFilePath)
+#    }
+# 
+#    $wc.Dispose()
+#}
 
-    $wc = New-Object System.Net.WebClient
-    $wc.Credentials = New-Object System.Net.NetworkCredential($ftpUser,$ftpPassword)
-    
-    if($deply)
-    {
-        $wc.UploadFile($installerAddress, $localFilePath)
-    }
- 
-    $wc.Dispose()
-}
+task BuildChocolateyPackage -depends BuildInstaller {
 
-task BuildChocolateyPackage -depends DeployInstaller {
-
-    $installerAddress = New-Object System.Uri("$donwloadDirAddress/OutlookMessageIdToolsAddin.$version.msi")
+    $installerAddress = New-Object System.Uri(($donwloadAddressTemplate -f ($version)))
 
     # set version to chocolatey package
     $content = Get-Content ".\Chocolatey\OutlookMessageIdToolsAddin\OutlookMessageIdToolsAddin.nuspec" -Encoding UTF8
@@ -92,8 +105,6 @@ task BuildChocolateyPackage -depends DeployInstaller {
 
     try
     {
-        $installerAddress = New-Object System.Uri("$ftpDirAddress/OutlookMessageIdToolsAddin.$version.msi")
-
         exec { choco.exe pack ".\Chocolatey\OutlookMessageIdToolsAddin\OutlookMessageIdToolsAddin.nuspec" }
     }
     finally
@@ -114,7 +125,7 @@ task DeployChocolateyPackage -depends BuildChocolateyPackage {
     }
 }
 
-task BuildAssembly {
+task BuildAssembly -depends Clean {
     # set version to assemblies
     $content = Get-Content ".\MessageIDToolsAddin\Properties\AssemblyInfo.cs" -Encoding UTF8
     $content = $content -replace "AssemblyVersion\(`"[0-9\.]+`"\)","AssemblyVersion(`"$version`")"
