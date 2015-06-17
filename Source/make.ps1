@@ -53,8 +53,9 @@ task BuildEnHelp -depends Clean {
 task BuildInstaller -depends BuildAssembly, BuildHelp {
     # set version to installer scripts
     $content = Get-Content ".\MessageIDToolsSetup\Product.wxs" -Encoding UTF8
-    $content = $content -replace "Version *= *`"[0-9]\.[0-9]\.[0-9]`"", "Version =`"$version`""
-    $content = $content -replace "Maximum *= *`"[0-9]\.[0-9]\.[0-9]`"", "Maximum =`"$version`""
+    $content = $content -replace "Version *= *'[0-9]\.[0-9]\.[0-9]\'", "Version ='$version'"
+    $content = $content -replace "Maximum *= *'[0-9]\.[0-9]\.[0-9]\'", "Maximum ='$version'"
+    $content = $content -replace "Minimum *= *'[0-9]\.[0-9]\.[0-9]\'", "Minimum ='$version'"
     Set-Content ".\MessageIDToolsSetup\Product.wxs" $content -Encoding UTF8
 
     try
