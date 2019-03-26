@@ -53,10 +53,6 @@ you can download msi package following:
 2. Luanch msi package to install.
 
 
-Also, you can install with chocolatey. The command is follows:
-
-    choco install OutlookMessageIdToolsAddin
-
 ## Contribution
 
 1. Fork it ( https://github.com/banban525/OutlookMessageIdToolsAddin/fork )

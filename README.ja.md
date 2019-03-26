@@ -52,10 +52,6 @@ Outlook MessageIdTools Addin は、OutlookでメッセージIDを扱うための
 1. MSIファイルをダウンロードします。
 2. msiファイルを起動してインストールします。
 
-また、Chocolateyでもインストールできます。
-
-    choco install OutlookMessageIdToolsAddin
-
 ## 開発方法
 
 1. フォークしてください ( https://github.com/banban525/OutlookMessageIdToolsAddin/fork )
